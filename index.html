@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Courthouse Cafe – Rustburg, VA</title>
+<meta name="description" content="The Courthouse Cafe in Rustburg, Virginia: Southern comfort food, fair prices and friendly service on Village Highway. Call 434-332-3301.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1F5A3A; --green-dk:#143D27; --red:#8E2F23; --red-dk:#7A271D;
+    --cream:#F7F1E6; --paper:#FFFDF8; --tan:#EFE4D2; --line:#E2D6C4;
+    --ink:#2A211C; --muted:#5A4A40;
+    --serif:'Libre Baskerville', Georgia, serif;
+    --sans:'Source Sans 3', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--cream);font-size:17px;line-height:1.55}
+  a{color:var(--green)} a:hover{color:var(--green-dk)}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--red)}
+  h1,h2,h3{font-family:var(--serif);line-height:1.2;margin:0}
+  h2{font-size:clamp(30px,4vw,40px)}
+  .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:18px;padding:13px 24px;border-radius:6px;min-height:48px;border:2px solid transparent}
+  .btn-red{background:var(--red);color:var(--paper)} .btn-red:hover{background:var(--red-dk);color:var(--paper)}
+  .btn-light{background:var(--paper);color:var(--red)} .btn-light:hover{color:var(--red-dk)}
+  .btn-ghost{border-color:var(--paper);color:var(--paper)} .btn-ghost:hover{background:rgba(255,255,255,.1);color:var(--paper)}
+  .btn-outline{border-color:var(--green);color:var(--green)} .btn-outline:hover{background:var(--green);color:var(--paper)}
+  .ph{background:#FFF3C4;color:#5A4500;border-radius:3px;padding:0 4px;font-style:normal}
+  section{scroll-margin-top:80px}
+
+  /* Header */
+  header{background:var(--paper);border-bottom:3px solid var(--green);position:sticky;top:0;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--green)}
+  .brand-name{font-family:var(--serif);font-weight:700;font-size:21px;letter-spacing:.08em;display:block;line-height:1.05}
+  .brand-sub{font-size:12px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  .links{display:flex;align-items:center;gap:24px;font-weight:600}
+  .links a{text-decoration:none;color:var(--ink)}
+  .links a.btn{color:var(--paper);font-size:16px;padding:9px 16px;min-height:44px}
+  .menu-toggle{display:none;background:none;border:2px solid var(--green);color:var(--green);border-radius:6px;width:48px;height:44px;cursor:pointer}
+  @media (max-width:860px){
+    .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+    .brand-name{font-size:17px;letter-spacing:.05em}
+    .brand svg{width:34px;height:34px}
+    .links{display:none;position:absolute;left:0;right:0;top:100%;background:var(--paper);flex-direction:column;align-items:stretch;gap:0;border-bottom:3px solid var(--green);padding:8px 24px 16px}
+    .links.open{display:flex}
+    .links a{padding:12px 0;border-bottom:1px solid var(--line)}
+    .links a.btn{margin-top:12px;justify-content:center;border-bottom:0}
+  }
+
+  /* Hero */
+  .hero{background-color:var(--red);background-image:linear-gradient(var(--red-dk) 2px,transparent 2px),linear-gradient(90deg,var(--red-dk) 2px,transparent 2px);background-size:64px 28px,64px 56px;color:var(--paper)}
+  .hero .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:48px;padding-top:72px;padding-bottom:80px}
+  .hero-text{flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px}
+  .hero-text .eyebrow{color:#F3DFC8}
+  .hero h1{font-size:clamp(34px,5vw,56px);line-height:1.12}
+  .hero p{margin:0;font-size:20px;max-width:520px;color:#FBEFE2}
+  .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+  .hero figure{flex:1 1 420px;min-width:0;margin:0;background:var(--paper);padding:14px;border-radius:4px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+  .hero figcaption{font-size:13px;color:var(--muted);padding-top:10px;text-align:center}
+
+  /* Quick info */
+  .quick{background:var(--green);color:var(--paper)}
+  .quick .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 32px;padding-top:22px;padding-bottom:22px}
+  .quick small{display:block;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#CFE3D5}
+  .quick strong,.quick a{font-weight:700;font-size:19px;color:var(--paper)}
+
+  /* Menu */
+  .pad{padding:88px 0}
+  .head-center{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin-bottom:36px}
+  .rule{width:64px;height:3px;background:#24376B}
+  .menu-grid{display:flex;flex-wrap:wrap;gap:28px;align-items:stretch}
+  .special{flex:1 1 320px;min-width:0;background:var(--green);color:var(--paper);border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:14px;border-top:6px solid #B3262E}
+  .special small{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#CFE3D5}
+  .special h3{font-size:30px}
+  .special p{margin:0;color:#E4EFE7}
+  .special .price{font-size:26px;font-weight:700}
+  .favorites{flex:2 1 520px;min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 32px}
+  .item{display:flex;align-items:baseline;gap:12px;padding:16px 0;border-bottom:1px dashed #D9CBB6}
+  .item div{flex:1 1 auto;min-width:0}
+  .item b{display:block;font-size:19px}
+  .item span{color:var(--muted);font-size:15px}
+  .item .price{font-weight:700;color:var(--red);white-space:nowrap}
+  .favorites .more{padding:20px 0 16px}
+
+  /* Reviews */
+  .reviews{background:var(--tan)}
+  .rev-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px}
+  .rev-head div{display:flex;flex-direction:column;gap:10px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-bottom:24px}
+  .card{margin:0;background:var(--paper);border-radius:8px;padding:28px;display:flex;flex-direction:column;gap:14px;box-shadow:0 2px 0 #D9CBB6}
+  .stars{color:#B3262E;font-size:20px;letter-spacing:3px}
+  .card blockquote{margin:0;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.6}
+  .card figcaption{font-weight:700;color:var(--muted)}
+  .photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .photo{aspect-ratio:4/3;background:#D9CBB6;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-weight:600;font-size:15px;text-align:center;padding:8px}
+
+  /* Story */
+  .plaque{max-width:760px;margin:0 auto;background:#C9CDD1;border:6px solid #3A3F44;border-radius:14px;padding:44px 40px;text-align:center;color:#111418;box-shadow:inset 0 0 0 3px #E6E9EC,0 10px 24px rgba(0,0,0,.12)}
+  .plaque .eyebrow{color:#111418;letter-spacing:.24em}
+  .plaque h2{margin:10px 0 18px;font-size:clamp(26px,4vw,34px);letter-spacing:.04em;text-transform:uppercase}
+  .plaque p{margin:0 auto;max-width:560px;font-size:18px;line-height:1.65}
+
+  /* Hours */
+  .hours{background:var(--paper);border-top:1px solid var(--line)}
+  .hours .wrap{display:flex;flex-wrap:wrap;gap:48px}
+  .hours-col{flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:18px}
+  table{border-collapse:collapse;width:100%;font-size:17px}
+  tr{border-bottom:1px solid #EADFCF}
+  th,td{padding:10px 0;font-weight:400}
+  th{text-align:left} td{text-align:right}
+  tr.today th,tr.today td{font-weight:700;color:var(--green)}
+  .map{flex:1 1 420px;min-width:0;min-height:360px;border-radius:8px;background-color:#E3EADF;background-image:linear-gradient(#D2DBCD 1px,transparent 1px),linear-gradient(90deg,#D2DBCD 1px,transparent 1px);background-size:40px 40px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;text-decoration:none}
+  .road{position:absolute;left:0;right:0;top:52%;height:22px;background:var(--paper);border-top:2px solid #C9BFB0;border-bottom:2px solid #C9BFB0}
+  .road-label{position:absolute;left:24px;top:calc(52% + 26px);font-size:13px;font-weight:600;color:var(--muted)}
+  .pin{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:-40px}
+  .pin span{background:var(--red);color:var(--paper);font-weight:700;padding:6px 12px;border-radius:6px;font-size:15px}
+  .map-hint{position:absolute;bottom:14px;right:16px;font-size:13px;font-weight:600;color:var(--green)}
+
+  footer{background:var(--ink);color:#F3E9DA;padding:56px 0}
+  footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+  footer .brand-name{color:#F3E9DA}
+  footer small{display:block;margin-top:14px;color:#BFB2A2;font-size:14px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="The Courthouse Cafe home">
+      <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true"><g transform="translate(48 0) scale(-1 1)" fill="#1F5A3A"><g transform="rotate(-45 20 16)"><rect x="9" y="9" width="22" height="13" rx="2.5"/></g><line x1="23" y1="19" x2="39" y2="35" stroke="#1F5A3A" stroke-width="4.5" stroke-linecap="round"/><rect x="6" y="37" width="24" height="7" rx="2"/></g></svg>
+      <span><span class="brand-name">THE COURTHOUSE CAFE</span><span class="brand-sub">Rustburg, Virginia</span></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-links">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="links" id="site-links" aria-label="Main">
+      <a href="#menu">Menu</a>
+      <a href="#hours">Hours &amp; Location</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#story">Our Story</a>
+      <a class="btn btn-red" href="tel:4343323301">Call 434-332-3301</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section id="top" class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow">Southern comfort food · 880 Village Highway</span>
+      <h1>Rustburg’s front porch since 2010.</h1>
+      <p>Hearty plates, fair prices, and a seat that feels like home — just up the road from the historic courthouse.</p>
+      <div class="ctas">
+        <a class="btn btn-light" href="tel:4343323301">Call Now</a>
+        <a class="btn btn-ghost" href="https://maps.google.com/?q=880+Village+Highway+Rustburg+VA+24588">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          Get Directions</a>
+      </div>
+    </div>
+    <figure>
+      <img src="images/storefront.jpg" width="1448" height="1086" alt="The Courthouse Cafe storefront on Village Highway, with its green gavel sign" style="width:100%;height:auto;border-radius:2px">
+    </figure>
+  </div>
+</section>
+
+<section class="quick" aria-label="Quick info">
+  <div class="wrap">
+    <div><small>Open today (<span class="js-day">today</span>)</small><strong class="js-today-hours"><em class="ph">[open] – [close]</em></strong></div>
+    <div><small>Find us</small><strong>880 Village Highway, Rustburg</strong></div>
+    <div><small>Call ahead for takeout</small><a href="tel:4343323301">434-332-3301</a></div>
+  </div>
+</section>
+
+<section id="menu" class="pad">
+  <div class="wrap">
+    <div class="head-center">
+      <span class="eyebrow">The Menu</span>
+      <h2>Plates folks come back for</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="menu-grid">
+      <div class="special">
+        <small>Today’s special · <span class="js-day">today</span></small>
+        <h3 class="js-special">Daily special</h3>
+        <p>Served with two sides and a roll. Changes every weekday — this card updates itself each morning.</p>
+        <span class="price"><em class="ph">[price]</em></span>
+      </div>
+      <div class="favorites" id="favorites"></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="pad reviews">
+  <div class="wrap">
+    <div class="rev-head">
+      <div>
+        <span class="eyebrow">What neighbors say</span>
+        <h2>Loved by Rustburg</h2>
+      </div>
+      <a class="btn btn-red" href="https://www.google.com/search?q=Courthouse+Cafe+Rustburg+VA">Leave us a review on Google</a>
+    </div>
+    <div class="cards" id="reviews-list"></div>
+    <div class="photos" id="photos"></div>
+  </div>
+</section>
+
+<section id="story" class="pad">
+  <div class="wrap">
+    <div class="plaque">
+      <span class="eyebrow">Our Story</span>
+      <h2>The Courthouse Cafe</h2>
+      <p>Serving Rustburg since 2010, a short walk from the Historic Courthouse at the heart of Campbell County. <em class="ph">[Miss Tracy’s story: how the cafe started, where the name comes from, and the regulars who’ve kept the coffee going.]</em></p>
+    </div>
+  </div>
+</section>
+
+<section id="hours" class="pad hours">
+  <div class="wrap">
+    <div class="hours-col">
+      <h2>Hours &amp; Location</h2>
+      <table><tbody id="hours-table"></tbody></table>
+      <p style="margin:0;font-size:18px"><strong>880 Village Highway</strong><br>Rustburg, VA 24588</p>
+      <div class="ctas">
+        <a class="btn btn-red" href="tel:4343323301">Call 434-332-3301</a>
+        <a class="btn btn-outline" href="https://maps.google.com/?q=880+Village+Highway+Rustburg+VA+24588">Get Directions</a>
+      </div>
+    </div>
+    <a class="map" href="https://maps.google.com/?q=880+Village+Highway+Rustburg+VA+24588" aria-label="Open The Courthouse Cafe in Google Maps">
+      <div class="road"></div>
+      <span class="road-label">Village Hwy</span>
+      <div class="pin">
+        <span>The Courthouse Cafe</span>
+        <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="#8E2F23" stroke="#FFFDF8" stroke-width="1.5"><path d="M12 22s-7-6.2-7-11.5A7 7 0 0 1 19 10.5C19 15.8 12 22 12 22z"/><circle cx="12" cy="10.5" r="2.5" fill="#FFFDF8"/></svg>
+      </div>
+      <span class="map-hint">Open in Google Maps →</span>
+    </a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <span class="brand-name">THE COURTHOUSE CAFE</span>
+      <span>880 Village Highway, Rustburg, VA 24588 · 434-332-3301</span>
+      <small>© <span class="js-year">2026</span> The Courthouse Cafe</small>
+    </div>
+    <a class="btn btn-light" href="tel:4343323301">Call Now</a>
+  </div>
+</footer>
+
+<script>
+/* ===== EDIT CONTENT HERE ===== */
+var SITE = {
+  // Hours per day (confirmed Nov 19, 2026). Use null for a closed day.
+  hours: {
+    Monday:    '7 AM – 2 PM',
+    Tuesday:   '7 AM – 8 PM',
+    Wednesday: '7 AM – 8 PM',
+    Thursday:  '7 AM – 8 PM',
+    Friday:    '7 AM – 9 PM',
+    Saturday:  '7 AM – 9 PM',
+    Sunday:    '7 AM – 2 PM'
+  },
+  specials: {
+    Monday: '[Monday special]', Tuesday: '[Tuesday special]', Wednesday: '[Wednesday special]',
+    Thursday: '[Thursday special]', Friday: '[Friday special]',
+    Saturday: 'Weekend favorites', Sunday: 'Weekend favorites'
+  },
+  favorites: [
+    { name: 'Country Breakfast',   desc: 'Two eggs, bacon or sausage, grits or home fries, biscuit', price: '[price]' },
+    { name: 'Biscuits & Gravy',    desc: 'Fresh biscuits with sausage gravy', price: '[price]' },
+    { name: 'Hamburger Steak',     desc: 'Smothered in onions and brown gravy, two sides', price: '[price]' },
+    { name: 'Fried Chicken Plate', desc: 'With mashed potatoes, green beans and a roll', price: '[price]' },
+    { name: 'Classic Cheeseburger',desc: 'Lettuce, tomato, onion, fries', price: '[price]' },
+    { name: 'Homemade Dessert',    desc: 'Ask about today’s pie or cobbler', price: '[price]' }
+  ],
+  menuPdf: '', // e.g. 'menu.pdf' once we have it
+  reviews: [
+    { text: '[A favorite Google review, picked with Miss Tracy]', who: '[First name], Rustburg' },
+    { text: '[A review about the food and the prices]', who: '[First name], Lynchburg' },
+    { text: '[A review about the friendly staff]', who: '[First name], visitor' }
+  ],
+  photos: ['Dining room', 'Signature plate', 'Breakfast plate', 'Dessert'] // swap for image paths later
+};
+/* ============================= */
+
+(function(){
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var today = days[new Date().getDay()];
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function fill(s){ s = esc(s); return /\[.*\]/.test(s) ? s.replace(/(\[[^\]]*\])/g, '<em class="ph">$1</em>') : s; }
+
+  document.querySelectorAll('.js-day').forEach(function(el){ el.textContent = today; });
+  document.querySelector('.js-today-hours').innerHTML = SITE.hours[today] ? fill(SITE.hours[today]) : 'Closed today';
+  document.querySelector('.js-special').innerHTML = fill(SITE.specials[today]);
+  document.querySelector('.js-year').textContent = new Date().getFullYear();
+
+  var fav = SITE.favorites.map(function(f){
+    return '<div class="item"><div><b>' + esc(f.name) + '</b><span>' + esc(f.desc) + '</span></div><span class="price">' + fill(f.price) + '</span></div>';
+  }).join('');
+  fav += '<div class="more">' + (SITE.menuPdf
+    ? '<a class="btn btn-outline" href="' + esc(SITE.menuPdf) + '">See the full menu (PDF)</a>'
+    : '<span class="btn btn-outline" style="opacity:.6;cursor:default">Full menu coming soon</span>') + '</div>';
+  document.getElementById('favorites').innerHTML = fav;
+
+  document.getElementById('reviews-list').innerHTML = SITE.reviews.map(function(r){
+    return '<figure class="card"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>“' + fill(r.text) + '”</blockquote><figcaption>— ' + fill(r.who) + '</figcaption></figure>';
+  }).join('');
+
+  var cam = '<svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>';
+  document.getElementById('photos').innerHTML = SITE.photos.map(function(p){
+    return '<div class="photo">' + cam + esc(p) + '<br><small>(photo coming)</small></div>';
+  }).join('');
+
+  var order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  document.getElementById('hours-table').innerHTML = order.map(function(d){
+    var h = SITE.hours[d];
+    return '<tr' + (d === today ? ' class="today"' : '') + '><th scope="row">' + d + (d === today ? ' (today)' : '') + '</th><td>' + (h ? fill(h) : 'Closed') + '</td></tr>';
+  }).join('');
+
+  var btn = document.querySelector('.menu-toggle'), links = document.getElementById('site-links');
+  btn.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  links.addEventListener('click', function(e){ if (e.target.tagName === 'A') { links.classList.remove('open'); btn.setAttribute('aria-expanded', false); } });
+})();
+</script>
+</body>
+</html>
